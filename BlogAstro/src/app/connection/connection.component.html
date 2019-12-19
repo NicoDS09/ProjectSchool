@@ -1,27 +1,46 @@
-<div class="ui menu">
-    <div class="item">
-        <p>Astro Web</p>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+
+    </a>
+</nav>
+
+<nav class="navbar navbar-light bg-light">
+    <img class="imglogo" src="assets/orbit.png" width="30" height="30" alt="">
+    <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+</nav>
+
+
+
+
+
+
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-    <div class="right item">
-        <a class="ui button">create account</a>
+    <div class="modal-body">
+        This is a modal.
     </div>
-</div>
-<br><br>
+</ng-template>
 
-
-<div class="ui raised very padded text container segment">
-    <h2 class="ui header">connection</h2>
-    <form class="ui form">
-        <div class="field">
-            <label>Email</label>
-            <input type="text" name="Email" placeholder="Email">
-        </div>
-        <div class="field">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="password">
-        </div>
-        <button class="ui button" type="submit">envoyer</button>
-    </form>
-</div>
-
-<br>
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
