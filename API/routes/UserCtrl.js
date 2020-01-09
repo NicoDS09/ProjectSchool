@@ -4,7 +4,7 @@ module.exports = {
     getUser: function (req, res) {
 
         models.User.findAll({
-            attributes: ['id', 'prenom', 'nom', 'email', 'password', 'nomBlogeur', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'prenom', 'nom', 'email', 'nomBlogeur', 'createdAt', 'updatedAt'],
         }).then(function (user) {
             if (user) {
                 res.status(201).json(user);
