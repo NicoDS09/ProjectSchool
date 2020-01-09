@@ -1,0 +1,16 @@
+{
+  "name": "api-astro",
+  "version": "1.0.0",
+  "description": "API REST",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nicolas DS",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.17.1",
+    "sequelize": "^3.30.4"
+  }
+}
