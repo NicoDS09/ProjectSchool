@@ -9,6 +9,7 @@ exports.router = (function () {
     //User routes
     apiRouter.route('/User/').get(UserCtrl.getUser);
     apiRouter.route('/User/new/').post(UserCtrl.postUser);
+    apiRouter.route('/User/update/:id/').put(UserCtrl.UpdateUser);
 
     //PostMessage route 
     apiRouter.route('/Postm/:id').get(MessCtrl.getMess);

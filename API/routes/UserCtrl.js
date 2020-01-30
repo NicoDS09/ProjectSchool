@@ -65,56 +65,48 @@ module.exports = {
             })
     },
 
-    UpdateUetdepartement: function (req, res) {
-        var headerAuth = req.headers['x-api-key'];
-        var TestToken = jwtUtils.verifToken(headerAuth);
-        if (TestToken < 0)
-            return res.status(400).json({ 'error': 'wrong token' });
+    UpdateUser: function (req, res) {
 
         var id = req.params.id;
-        var idDep = req.params.idDep;
-        var IP_Bright = req.params.IP_Bright;
-        var newIp = req.body.newIp;
-        var localisation = req.body.localisation;
-        var ProjectName = req.body.ProjectName;
+        var prenom = req.body.prenom;
+        var nom = req.body.nom;
+        var email = req.body.email;
+        var password = req.body.password;
+        var nomBlogeur = req.body.nomBlogeur;
 
-        if (IP_Bright == null | localisation == null | ProjectName == null | newIp == null | id == null | idDep == null) {
+        if (id == null | prenom == null | nom == null | email == null | password == null | nomBlogeur == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
-        models.UetData.findOne({
-            attributes: ['IP_Bright',],
-            where: { IP_Bright: newIp }
+        models.User.findOne({
+            attributes: ['id'],
+            where: { id: id }
         })
-            .then(function (existip) {
-                if (!existip) {
-                    models.UetData.findOne({
-                        attributes: ['IP_Bright', 'id', 'idDep'],
-                        where: { IP_Bright: IP_Bright, id: id, idDep: idDep }
+            .then(function (Userfound) {
+                if (Userfound) {
+                    Userfound.update({
+                        prenom: prenom,
+                        nom: nom,
+                        email: email,
+                        password: password,
+                        nomBlogeur: nomBlogeur,
                     })
-                        .then(function (Depfound) {
-                            if (Depfound) {
-                                Depfound.update({
-                                    IP_Bright: newIp,
-                                    localisation: localisation,
-                                    ProjectName: ProjectName,
-                                })
-                                    .then(function (newDep) {
-                                        return res.status(201).json({
-                                            'IP_Bright': `new ${newIp}`,
-                                            'localisation': `new ${localisation}`,
-                                            'ProjectName': `new ${ProjectName}`,
-                                        })
-                                    })
-                                    .catch(function (err) {
-                                        return res.status(500).json({ 'error': `${err}` });
-                                    });
 
-                            } else {
-                                return res.status(409).json({ 'error': `uet not exist` });
-                            }
+                        .then(function (newUser) {
+                            return res.status(201).json({
+                                'prenom': prenom + '' + ' Updated',
+                                'nom': nom + '' + ' Updated',
+                                'email': email + '' + ' Updated',
+                                'password': password + '' + ' Updated',
+                                'nomBlogeur': nomBlogeur + '' + ' Updated',
+
+                            })
                         })
+                        .catch(function (err) {
+                            return res.status(500).json({ 'error': `${err}` });
+                        });
+
                 } else {
-                    return res.status(409).json({ 'error': 'IP already exist' });
+                    return res.status(409).json({ 'error': 'User not exist' });
                 }
             })
     },
