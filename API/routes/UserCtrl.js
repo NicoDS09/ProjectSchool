@@ -73,8 +73,8 @@ module.exports = {
         var email = req.body.email;
         var password = req.body.password;
         var nomBlogeur = req.body.nomBlogeur;
-
-        if (id == null | prenom == null | nom == null | email == null | password == null | nomBlogeur == null) {
+        var updatedAt = Date.now();
+        if (prenom == null | nom == null | email == null | password == null | nomBlogeur == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
         models.User.findOne({
@@ -89,16 +89,17 @@ module.exports = {
                         email: email,
                         password: password,
                         nomBlogeur: nomBlogeur,
+                        updatedAt: Date.now(),
                     })
 
-                        .then(function (newUser) {
+                        .then(function () {
                             return res.status(201).json({
-                                'prenom': prenom + '' + ' Updated',
-                                'nom': nom + '' + ' Updated',
-                                'email': email + '' + ' Updated',
-                                'password': password + '' + ' Updated',
-                                'nomBlogeur': nomBlogeur + '' + ' Updated',
-
+                                'prenom': prenom,
+                                'nom': nom,
+                                'email': email,
+                                'password': password,
+                                'nomBlogeur': nomBlogeur,
+                                'updatedAt': updatedAt,
                             })
                         })
                         .catch(function (err) {
