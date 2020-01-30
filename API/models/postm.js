@@ -1,6 +1,6 @@
 'use strict';
-module.exports = (DataTypes, DataTypes) => {
-  const PostM = DataTypes.define('PostM', {
+module.exports = (sequelize, DataTypes) => {
+  const PostM = sequelize.define('PostM', {
     id: {
       allowNull: false,
       autoIncrement: true,

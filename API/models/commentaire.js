@@ -1,6 +1,6 @@
 'use strict';
-module.exports = (DataTypes, DataTypes) => {
-  const commentaire = DataTypes.define('commentaire', {
+module.exports = (sequelize, DataTypes) => {
+  const commentaire = sequelize.define('commentaire', {
     id: {
       allowNull: false,
       autoIncrement: true,
