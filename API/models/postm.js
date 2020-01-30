@@ -1,14 +1,14 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const PostM = sequelize.define('PostM', {
+module.exports = (DataTypes, DataTypes) => {
+  const PostM = DataTypes.define('PostM', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     idUser: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       references: {
         model: 'Users',
@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     post: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
   }, {});
   PostM.associate = function (models) {
