@@ -12,6 +12,6 @@ exports.router = (function () {
 
     //PostMessage route 
     apiRouter.route('/Postm/:id').get(MessCtrl.getMess);
-
+    apiRouter.route('/Postm/new/').post(MessCtrl.postMess);
     return apiRouter;
 })();
