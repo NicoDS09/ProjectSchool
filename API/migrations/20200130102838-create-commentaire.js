@@ -16,14 +16,6 @@ module.exports = {
           key: 'id',
         },
       },
-      iduser: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        references: {
-          model: 'Users',
-          key: 'id',
-        },
-      },
       comm: {
         type: Sequelize.STRING
       },
