@@ -17,6 +17,7 @@ exports.router = (function () {
 
     //Commentaire route
     apiRouter.route('/commentaire/:idpost').get(CommCtrl.getCom);
+    apiRouter.route('/commentaire/').post(CommCtrl.postCom);
     //   apiRouter.route('/commentaire/').post(MessCtrl.postMess);
 
     return apiRouter;
