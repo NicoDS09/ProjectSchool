@@ -50,4 +50,28 @@ module.exports = {
 
     },
 
+
+
+    deleteCom: function (req, res) {
+        var id = req.params.id;
+
+        if (id == null) {
+            return res.status(400).json({ 'error': 'missing parameters' });
+        }
+        models.commentaire.destroy({
+            where: {
+                id: id,
+            }
+        })
+            .then(function (comfound) {
+                if (comfound) {
+                    return res.status(201).json({ 'Com': `${id} deleted` });
+                }
+                else {
+                    return res.status(404).json({ 'error': `commentaire avec ${id}  n'existe pas` });
+                }
+            }).catch(function (err) {
+                return res.status(500).json({ 'error': `${err}` });
+            });
+    }
 }

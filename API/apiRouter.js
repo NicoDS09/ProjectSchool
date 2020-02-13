@@ -14,10 +14,12 @@ exports.router = (function () {
     //PostMessage route 
     apiRouter.route('/postm/:id').get(MessCtrl.getMess);
     apiRouter.route('/postm/:id').put(MessCtrl.UpdateMess);
+    apiRouter.route('/postm/:id').delete(MessCtrl.deleteMess);
     apiRouter.route('/postm/').post(MessCtrl.postMess);
 
     //Commentaire route
     apiRouter.route('/commentaire/:idpost').get(CommCtrl.getCom);
+    apiRouter.route('/commentaire/:id').delete(CommCtrl.deleteCom);
     apiRouter.route('/commentaire/').post(CommCtrl.postCom);
 
 
