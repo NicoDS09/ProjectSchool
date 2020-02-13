@@ -22,7 +22,6 @@ module.exports = {
     },
 
     postMess: function (req, res) {
-        var id = req.body.id;
         var idUser = req.body.idUser;
         var post = req.body.post;
 
@@ -30,31 +29,56 @@ module.exports = {
         if (id == null || idUser == null || post == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
+        var newPost = models.PostM.create({
+            idUser: idUser,
+            post: post,
+        })
+            .then(function (newPost) {
+                return res.status(201).json({
+                    'id': newPost.id,
+                    'idUser': newPost.idUser,
+                    'post': newPost.post,
+                })
+            })
+            .catch(function (err) {
+                console.log(err)
+                return res.status(500).json({ 'error': `${err}` });
+            });
+    },
+
+
+    UpdateMess: function (req, res) {
+        var id = req.params.id;
+        var post = req.body.post;
+        var updatedAt = Date.now();
+        if (id == null | post == null) {
+            return res.status(400).json({ 'error': 'missing parameters' });
+        }
         models.PostM.findOne({
             attributes: ['id'],
             where: { id: id }
         })
-            .then(function (Postfound) {
-                if (!Postfound) {
-                    var newPost = models.PostM.create({
-                        id: id,
-                        idUser: idUser,
+            .then(function (Messfound) {
+                if (Messfound) {
+                    Messfound.update({
                         post: post,
+                        updatedAt: updatedAt,
                     })
-                        .then(function (newPost) {
+
+                        .then(function () {
                             return res.status(201).json({
-                                'id': newPost.id,
-                                'idUser': newPost.idUser,
-                                'post': newPost.post,
+                                'id': id,
+                                'post': post,
+                                'updatedAt': updatedAt,
+
                             })
                         })
                         .catch(function (err) {
-                            console.log(err)
                             return res.status(500).json({ 'error': `${err}` });
                         });
 
                 } else {
-                    return res.status(409).json({ 'error': 'Post already exist' });
+                    return res.status(409).json({ 'error': 'Post not exist' });
                 }
             })
     },

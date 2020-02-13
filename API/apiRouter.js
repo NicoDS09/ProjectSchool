@@ -7,18 +7,19 @@ exports.router = (function () {
     var apiRouter = express.Router();
 
     //User routes
-    apiRouter.route('/User/').get(UserCtrl.getUser);
-    apiRouter.route('/User/new/').post(UserCtrl.postUser);
-    apiRouter.route('/User/update/:id/').put(UserCtrl.UpdateUser);
+    apiRouter.route('/user/').get(UserCtrl.getUser);
+    apiRouter.route('/user/').post(UserCtrl.postUser);
+    apiRouter.route('/user/:id/').put(UserCtrl.UpdateUser);
 
     //PostMessage route 
-    apiRouter.route('/Postm/:id').get(MessCtrl.getMess);
-    apiRouter.route('/Postm/new/').post(MessCtrl.postMess);
+    apiRouter.route('/postm/:id').get(MessCtrl.getMess);
+    apiRouter.route('/postm/:id').put(MessCtrl.UpdateMess);
+    apiRouter.route('/postm/').post(MessCtrl.postMess);
 
     //Commentaire route
     apiRouter.route('/commentaire/:idpost').get(CommCtrl.getCom);
     apiRouter.route('/commentaire/').post(CommCtrl.postCom);
-    //   apiRouter.route('/commentaire/').post(MessCtrl.postMess);
+
 
     return apiRouter;
 })();
