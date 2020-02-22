@@ -7,16 +7,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: ConnectionComponent },
+  { path: 'home', component: AccueilComponent },
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
