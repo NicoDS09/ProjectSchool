@@ -5,7 +5,7 @@ Objectif : faire un blog/réseaux social, où le sujet d'échange est l'astronom
 Fonctionnalitées principales en vues : 
 
 .Chaque utilisateur à un compte (connexion, déconnexion) 
-.Pouvoir post des nouveautés, chaque nouveaux post seront triés par date (du plus récent au moins résents).
+.Pouvoir post des nouveautés, chaque nouveaux post seront triés par date (du plus récent au plus ancien).
 .Barre de recherche pour trouver des postes particulier par titre
 .Possiblités d'échanger dans chaque publication
 
