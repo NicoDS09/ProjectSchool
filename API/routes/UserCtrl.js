@@ -1,5 +1,5 @@
 var models = require('../models');
-var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt');
 
 
 module.exports = {
@@ -33,9 +33,9 @@ module.exports = {
         })
             .then(function (Userfound) {
                 if (!Userfound) {
-                    bcrypt.hash(password, 5, function (err, bcryptPassword) {
-                        done(null, Userfound, bcryptPassword)
-                    });
+                    // bcrypt.hash(password, 5, function (err, bcryptPassword) {
+                    //     done(null, Userfound, bcryptPassword)
+                    // });
                     var newUser = models.User.create({
                         prenom: prenom,
                         nom: nom,

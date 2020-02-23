@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +39,9 @@ const appRoutes: Routes = [
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [],
