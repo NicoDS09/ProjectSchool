@@ -4,6 +4,7 @@ const cryptr = new Cryptr('myTotalySecretKey');
 
 
 
+
 module.exports = {
     getUser: function (req, res) {
 
@@ -19,6 +20,33 @@ module.exports = {
             res.status(500).json({ 'error': err });
         });
     },
+
+    login: function (req, res) {
+        var email = req.body.email;
+        var password = req.body.password;
+
+        if (email == null || password == null) {
+            return res.status(400).json({ 'error': 'missing parameters' });
+        }
+
+        models.User.findOne({
+            where: { email: email }
+        }).then(function (Userfound) {
+            if (Userfound) {
+                console.log(cryptr.decrypt(Userfound.password));
+                if (cryptr.decrypt(Userfound.password) === password) {
+                    res.status(200).json(Userfound);
+                } else {
+                    res.status(401).json({ 'error': 'Invalid password' });
+                }
+            } else {
+                res.status(401).json({ 'error': 'Invalid email' });
+            }
+        }).catch(function (error) {
+            return res.status(500).json({ 'error': `${error}` });
+        })
+    },
+
     postUser: function (req, res) {
         var prenom = req.body.prenom;
         var nom = req.body.nom;
@@ -111,5 +139,8 @@ module.exports = {
                 }
             })
     },
+
+
+
 
 }
