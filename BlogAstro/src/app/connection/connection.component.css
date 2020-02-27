@@ -7,7 +7,7 @@
     text-align: center;
 
 }
-.btn-primary, .btn-primary:disabled {
+.btn-secondary, .btn-secondary:disabled {
     color: #fff;
     background-color: #6c757c;
     border-color: black;
@@ -21,7 +21,7 @@
 
 
 
-.btn-primary:active {
+.btn-secondary:active {
     color: #fff;
     background-color: #6c757c;
     border-color: black;

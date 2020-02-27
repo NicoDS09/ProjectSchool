@@ -27,7 +27,8 @@
             <input #PasswordM="ngModel" type="password" required class="validate" class="form-control" id="password"
                 [(ngModel)]="passwordlogin" name="password">
         </div>
-        <button type="submit" [disabled]="!LoginUser.form.valid" id="over" class="btn btn-primary">Se connecter</button>
+        <button type="submit" [disabled]="!LoginUser.form.valid" id="over" class="btn btn-secondary">Se
+            connecter</button>
     </form>
 </div>
 
@@ -74,7 +75,7 @@
                 <input #NomBlogeurM="ngModel" type="text" required class="validate" class="form-control" id="nomBlogeur"
                     [(ngModel)]="nomBlogeur" name="nomBlogeur">
             </div>
-            <button type="submit" [disabled]="!PostUser.form.valid" class="btn btn-primary">s'inscrire</button>
+            <button type="submit" [disabled]="!PostUser.form.valid" class="btn btn-secondary">s'inscrire</button>
         </form>
 
 
