@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './service/auth.guard';
 
 
 const appRoutes: Routes = [
@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     FormsModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent, AuthGuard]
+  providers: [AuthGuard],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
