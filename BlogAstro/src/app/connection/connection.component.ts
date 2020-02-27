@@ -3,6 +3,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connection',
@@ -11,21 +12,19 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ConnectionComponent implements OnInit {
 
+  public id;
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService) { }
+  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router) { }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
   ngOnInit() {
-    console.warn('test')
-    this.toastr.success('Hello world!', 'Toastr fun!');
-
+    console.warn('test');
   }
 
   PostUsers(value: any, PostUser: NgForm) {
-    console.error('caca');
     console.warn(value.email);
     console.warn(value.password);
     console.warn(value.nom);
@@ -39,7 +38,25 @@ export class ConnectionComponent implements OnInit {
         this.toastr.error(`Network Erreur !`);
       }
     )
+  }
 
+  login(value: any, LoginUser: NgForm) {
+    console.warn(value.email);
+    console.warn(value.password);
+    this.serviceUser.postlogin(value.email, value.password).subscribe((response) => {
+      this.id = response.id;
+      console.log(this.id)
+      LoginUser.reset();
+      if (response) this.toastr.success(`Vous êtes connecté `);
+      localStorage.setItem('connect', 'OK');
+      localStorage.setItem('user', 'test');
+      this.router.navigateByUrl('/home');
+      // ${value.prenom} ${value.nom}
+    },
+      error => {
+        this.toastr.error(`${error.error.error}`);
+      }
+    )
   }
 
 }
