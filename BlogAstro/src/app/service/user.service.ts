@@ -18,4 +18,9 @@ export class UserService {
     let data = { prenom: prenom, nom: nom, email: email, password: password, nomBlogeur: nomBlogeur }
     return this.http.post<any[]>(this.urlUser, data);
   }
+
+  postlogin(email, password): Observable<any[]> {
+    let data = { email: email, password: password }
+    return this.http.post<any[]>(this.urlUser + 'login', data);
+  }
 }

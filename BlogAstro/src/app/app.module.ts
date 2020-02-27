@@ -14,11 +14,17 @@ import { AppComponent } from './app.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
+import { AuthGuard } from './auth.guard';
 
 
 const appRoutes: Routes = [
-  { path: '', component: ConnectionComponent },
-  { path: 'home', component: AccueilComponent },
+  {
+    path: '', component: ConnectionComponent,
+  },
+  {
+    path: 'home', component: AccueilComponent,
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({
@@ -45,6 +51,6 @@ const appRoutes: Routes = [
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, AuthGuard]
 })
 export class AppModule { }
