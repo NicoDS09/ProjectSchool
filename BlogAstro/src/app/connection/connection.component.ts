@@ -43,13 +43,11 @@ export class ConnectionComponent implements OnInit {
   login(value: any, LoginUser: NgForm) {
     console.warn(value.email);
     console.warn(value.password);
-    this.serviceUser.postlogin(value.email, value.password).subscribe((response) => {
-      this.id = response.id;
-      console.log(this.id)
+    this.serviceUser.postlogin(value.email, value.password).subscribe((response: any) => {
       LoginUser.reset();
       if (response) this.toastr.success(`Vous êtes connecté `);
       localStorage.setItem('connect', 'OK');
-      localStorage.setItem('user', 'test');
+      localStorage.setItem('userid', response.id);
       this.router.navigateByUrl('/home');
       // ${value.prenom} ${value.nom}
     },

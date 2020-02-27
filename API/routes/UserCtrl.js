@@ -14,6 +14,22 @@ module.exports = {
             if (user) {
                 res.status(201).json(user);
             } else {
+                res.status(404).json({ 'error': 'users not found' });
+            }
+        }).catch(function (err) {
+            res.status(500).json({ 'error': err });
+        });
+    },
+
+    getUserById: function (req, res) {
+        var id = req.params.id;
+        models.User.findOne({
+            attributes: ['id', 'prenom', 'nom', 'email', 'nomBlogeur', 'createdAt', 'updatedAt'],
+            where: { id: id }
+        }).then(function (user) {
+            if (user) {
+                res.status(201).json(user);
+            } else {
                 res.status(404).json({ 'error': 'user not found' });
             }
         }).catch(function (err) {

@@ -8,7 +8,6 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
-
   public urlUser = "http://localhost:3000/AstroBlog/user/";
 
   constructor(private http: HttpClient) { }
@@ -22,5 +21,9 @@ export class UserService {
   postlogin(email, password): Observable<any[]> {
     let data = { email: email, password: password }
     return this.http.post<any[]>(this.urlUser + 'login', data);
+  }
+
+  getuser(id): Observable<any[]> {
+    return this.http.get<any[]>(this.urlUser + id);
   }
 }
