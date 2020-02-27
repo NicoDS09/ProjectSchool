@@ -8,10 +8,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  private home: boolean;
+  private post: boolean;
   constructor(private router: Router, private toast: ToastrService) { }
 
   ngOnInit() {
+    this.home = this.router.isActive('home', true);
+    this.post = this.router.isActive('post', true);
+    console.error(this.home + 'home');
+    console.error(this.post + 'post');
   }
 
   deconnect() {
@@ -19,7 +24,6 @@ export class MenuComponent implements OnInit {
     localStorage.removeItem("connect");
     this.toast.success('Deconnecté');
     this.router.navigate(['']);
-    console.warn(" my firend");
   }
 
 }

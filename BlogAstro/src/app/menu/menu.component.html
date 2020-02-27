@@ -5,14 +5,29 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Post <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Actu</a>
-            </li>
+            <div *ngIf="home; else elseBlock">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </div>
+            <ng-template #elseBlock>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ng-template>
+            <div *ngIf="post; else elseBlock1">
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/post']">Post</a>
+                </li>
+            </div>
+            <ng-template #elseBlock1>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/post']">Post <span class="sr-only">(current)</span></a>
+                </li>
+            </ng-template>
             <li class="nav-item">
                 <a class="nav-link" (click)="deconnect()">Supprimer</a>
             </li>

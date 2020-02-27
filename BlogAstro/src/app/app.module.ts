@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AuthGuard } from './service/auth.guard';
 import { MenuComponent } from './menu/menu.component';
+import { PostMessageComponent } from './post-message/post-message.component';
 
 
 const appRoutes: Routes = [
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
     path: 'home', component: AccueilComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'post', component: PostMessageComponent,
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({
@@ -33,7 +38,8 @@ const appRoutes: Routes = [
     AppComponent,
     ConnectionComponent,
     AccueilComponent,
-    MenuComponent
+    MenuComponent,
+    PostMessageComponent
   ],
   imports: [
     BrowserModule,
