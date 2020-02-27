@@ -15,6 +15,7 @@ import { ConnectionComponent } from './connection/connection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AuthGuard } from './service/auth.guard';
+import { MenuComponent } from './menu/menu.component';
 
 
 const appRoutes: Routes = [
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ConnectionComponent,
-    AccueilComponent
+    AccueilComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

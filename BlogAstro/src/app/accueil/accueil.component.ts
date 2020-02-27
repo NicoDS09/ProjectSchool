@@ -8,14 +8,14 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AccueilComponent implements OnInit {
 
-  private id: string;
-
+  private id;
+  private nom: string;
   constructor(private serviceUser: UserService) { }
 
   ngOnInit() {
     this.id = localStorage.getItem('userid');
     this.serviceUser.getuser(this.id).subscribe((response: any) => {
-      console.log(response)
+      this.nom = response.nomBlogeur;
     })
   }
 
