@@ -17,6 +17,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { AuthGuard } from './service/auth.guard';
 import { MenuComponent } from './menu/menu.component';
 import { PostMessageComponent } from './post-message/post-message.component';
+import { SearchPostComponent } from './search-post/search-post.component';
 
 
 const appRoutes: Routes = [
@@ -31,6 +32,10 @@ const appRoutes: Routes = [
     path: 'post', component: PostMessageComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'post-search', component: SearchPostComponent,
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({
@@ -39,7 +44,8 @@ const appRoutes: Routes = [
     ConnectionComponent,
     AccueilComponent,
     MenuComponent,
-    PostMessageComponent
+    PostMessageComponent,
+    SearchPostComponent
   ],
   imports: [
     BrowserModule,

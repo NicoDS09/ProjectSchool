@@ -1,8 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var apiRouter = require('./apiRouter.js').router;
+var cors = require('cors');
+
+
 
 var server = express();
+server.use(cors());
 
 server.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
