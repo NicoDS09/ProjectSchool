@@ -25,6 +25,7 @@ export class ConnectionComponent implements OnInit {
     console.warn('test');
   }
 
+
   PostUsers(value: any, PostUser: NgForm) {
     console.warn(value.email);
     console.warn(value.password);
@@ -45,6 +46,7 @@ export class ConnectionComponent implements OnInit {
     console.warn(value.email);
     console.warn(value.password);
     this.serviceUser.postlogin(value.email, value.password).subscribe((response: any) => {
+
       LoginUser.reset();
       console.warn(response.token + 'token');
       if (response) this.toastr.success(`Vous êtes connecté `);
@@ -57,6 +59,7 @@ export class ConnectionComponent implements OnInit {
         this.toastr.error(`${error.error.error}`);
       }
     )
+
   }
 
 }

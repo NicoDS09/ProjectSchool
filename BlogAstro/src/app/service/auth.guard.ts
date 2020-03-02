@@ -6,16 +6,24 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
+  private auth: boolean;
+
   constructor(private router: Router, private user: UserService) { }
 
   login() {
-    return !!localStorage.getItem('token');
+    this.user.verifytoken().subscribe((res: any) => {
+      this.auth = res;
+    },
+      error => {
+        this.auth = false;
+      }
+    );
   }
 
   canActivate(): boolean {
-    console.warn('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    console.warn(this.user.verifytoken());
-    if (this.user.verifytoken()) {
+    this.login();
+    console.warn(this.auth);
+    if (this.auth) {
       return true;
     } else {
       this.router.navigate(['']);

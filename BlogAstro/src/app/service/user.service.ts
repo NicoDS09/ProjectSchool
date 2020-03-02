@@ -32,11 +32,6 @@ export class UserService {
   }
 
   verifytoken(): Observable<any[]> {
-    // console.warn('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-    // console.warn(`Bearer ${this.gettoken()}`);
-    // const httpHeaders = new HttpHeaders({
-    //   'Authorization': `Bearer ${this.gettoken()}`,
-    // })
     return this.http.get<any[]>(this.urlUser + 'token');
   }
 }
