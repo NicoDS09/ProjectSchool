@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
@@ -18,6 +18,7 @@ import { AuthGuard } from './service/auth.guard';
 import { MenuComponent } from './menu/menu.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { SearchPostComponent } from './search-post/search-post.component';
+import { TokenInterceptorService } from '../app/service/token-interceptor.service';
 
 
 const appRoutes: Routes = [
@@ -64,7 +65,12 @@ const appRoutes: Routes = [
     FormsModule
 
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

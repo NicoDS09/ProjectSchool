@@ -17,6 +17,10 @@ export class AccueilComponent implements OnInit {
     this.serviceUser.getuser(this.id).subscribe((response: any) => {
       this.nom = response.nomBlogeur;
     })
+    this.serviceUser.verifytoken().subscribe((response) => {
+      console.warn(response)
+    }
+    )
   }
 
 }

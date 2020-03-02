@@ -20,8 +20,8 @@ export class MenuComponent implements OnInit {
   }
 
   deconnect() {
-    localStorage.removeItem("userid");
-    localStorage.removeItem("connect");
+    //localStorage.removeItem("userid");
+    localStorage.removeItem("token");
     this.toast.success('Deconnecté');
     this.router.navigate(['']);
   }

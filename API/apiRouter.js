@@ -7,6 +7,7 @@ exports.router = (function () {
     var apiRouter = express.Router();
 
     //User routes
+    apiRouter.route('/user/token/').get(UserCtrl.verifyToken);
     apiRouter.route('/user/').get(UserCtrl.getUser);
     apiRouter.route('/user/:id').get(UserCtrl.getUserById);
     apiRouter.route('/user/').post(UserCtrl.postUser);

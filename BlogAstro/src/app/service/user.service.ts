@@ -26,4 +26,17 @@ export class UserService {
   getuser(id): Observable<any[]> {
     return this.http.get<any[]>(this.urlUser + id);
   }
+
+  gettoken() {
+    return localStorage.getItem('token');
+  }
+
+  verifytoken(): Observable<any[]> {
+    // console.warn('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+    // console.warn(`Bearer ${this.gettoken()}`);
+    // const httpHeaders = new HttpHeaders({
+    //   'Authorization': `Bearer ${this.gettoken()}`,
+    // })
+    return this.http.get<any[]>(this.urlUser + 'token');
+  }
 }

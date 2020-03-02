@@ -1,8 +1,9 @@
 var models = require('../models');
 const Cryptr = require('cryptr');
+const jwt = require('jsonwebtoken');
 const cryptr = new Cryptr('myTotalySecretKey');
 
-
+const secretKey = 'secretKey';
 
 
 module.exports = {
@@ -44,14 +45,15 @@ module.exports = {
         if (email == null || password == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
-
         models.User.findOne({
             where: { email: email }
         }).then(function (Userfound) {
             if (Userfound) {
                 console.log(cryptr.decrypt(Userfound.password));
                 if (cryptr.decrypt(Userfound.password) === password) {
-                    res.status(200).json(Userfound);
+                    let payload = { subject: Userfound.id }
+                    let token = jwt.sign(payload, secretKey)
+                    res.status(200).json({ token });
                 } else {
                     res.status(401).json({ 'error': 'Invalid password' });
                 }
@@ -61,6 +63,27 @@ module.exports = {
         }).catch(function (error) {
             return res.status(500).json({ 'error': `${error}` });
         })
+    },
+
+    verifyToken: function (req, res, next) {
+        if (!req.headers.authorization) {
+            return res.status(401).json({ 'error': 'Requête non autorisé' });
+        }
+        let token = req.headers.authorization.split(' ')[1];
+        if (token === "") {
+            return res.status(401).json({ 'error': 'Requête non autorisé' });
+        }
+        try {
+            let payload = jwt.verify(token, secretKey);
+            if (!payload) {
+                return res.status(401).json({ 'error': 'Requête non autorisé' });
+            }
+            req.userId = payload.subject;
+            return res.status(200).json(true);
+
+        } catch (err) {
+            return res.status(401).json({ 'error': 'Requête non autorisé' });
+        }
     },
 
     postUser: function (req, res) {

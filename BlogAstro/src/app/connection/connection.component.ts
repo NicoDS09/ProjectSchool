@@ -18,6 +18,7 @@ export class ConnectionComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+
   }
 
   ngOnInit() {
@@ -45,9 +46,10 @@ export class ConnectionComponent implements OnInit {
     console.warn(value.password);
     this.serviceUser.postlogin(value.email, value.password).subscribe((response: any) => {
       LoginUser.reset();
+      console.warn(response.token + 'token');
       if (response) this.toastr.success(`Vous êtes connecté `);
-      localStorage.setItem('connect', 'OK');
-      localStorage.setItem('userid', response.id);
+      //localStorage.setItem('connect', 'OK');
+      localStorage.setItem('token', response.token);
       this.router.navigateByUrl('/home');
       // ${value.prenom} ${value.nom}
     },
