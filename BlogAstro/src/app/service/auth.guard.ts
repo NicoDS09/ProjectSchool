@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserService } from './user.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   private auth: boolean;
 
-  constructor(private router: Router, private user: UserService) { }
+  constructor(private router: Router, private user: UserService, private http: HttpClient) { }
 
-  login() {
-    this.user.verifytoken().subscribe((res: any) => {
-      this.auth = res;
-    },
-      error => {
-        this.auth = false;
-      }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    return this.http.get("http://localhost:3000/AstroBlog/user/token").pipe(
+      map(res => {
+        console.log(res)
+        if (res == true) {
+          return true;
+        }
+      },
+      ), catchError(err => {
+        this.router.navigateByUrl('');
+        return of(false);
+      })
     );
-  }
-
-  canActivate(): boolean {
-    this.login();
-    console.warn(this.auth);
-    if (this.auth) {
-      return true;
-    } else {
-      this.router.navigate(['']);
-      return false;
-    }
   }
 
 }
