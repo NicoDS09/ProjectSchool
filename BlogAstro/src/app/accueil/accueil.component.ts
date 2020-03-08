@@ -9,7 +9,7 @@ import { UserService } from 'src/app/service/user.service';
 export class AccueilComponent implements OnInit {
 
   private id;
-  private nom: string;
+  public nom: string;
   constructor(private serviceUser: UserService) { }
 
   ngOnInit() {

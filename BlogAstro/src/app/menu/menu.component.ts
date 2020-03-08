@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private home: boolean;
-  private post: boolean;
+  public home: boolean;
+  public post: boolean;
   constructor(private router: Router, private toast: ToastrService) { }
 
   ngOnInit() {

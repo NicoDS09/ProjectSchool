@@ -12,7 +12,14 @@ import { Router } from '@angular/router';
 })
 export class ConnectionComponent implements OnInit {
 
-  public id;
+  public email: string;
+  public password: string;
+  public nom: string
+  public prenom: string;
+  public nomBlogeur: string;
+  public emaillogin: string;
+  public passwordlogin: string;
+
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router) { }
 
@@ -27,12 +34,12 @@ export class ConnectionComponent implements OnInit {
 
 
   PostUsers(value: any, PostUser: NgForm) {
-    console.warn(value.email);
-    console.warn(value.password);
-    console.warn(value.nom);
-    console.warn(value.nomBlogeur);
-    console.warn(value.prenom);
-    this.serviceUser.postUser(value.prenom, value.nom, value.email, value.password, value.nomBlogeur).subscribe((response) => {
+    this.email = value.email;
+    this.password = value.password;
+    this.nom = value.nom;
+    this.nomBlogeur = value.nomBlogeur;
+    this.prenom = value.prenom;
+    this.serviceUser.postUser(this.prenom, this.nom, this.email, this.password, this.nomBlogeur).subscribe((response) => {
       PostUser.reset();
       if (response) this.toastr.success(`Vous êtes inscrit ${value.prenom} ${value.nom}`);
     },
@@ -43,9 +50,9 @@ export class ConnectionComponent implements OnInit {
   }
 
   login(value: any, LoginUser: NgForm) {
-    console.warn(value.email);
-    console.warn(value.password);
-    this.serviceUser.postlogin(value.email, value.password).subscribe((response: any) => {
+    this.emaillogin = value.email;
+    this.passwordlogin = value.password;
+    this.serviceUser.postlogin(this.emaillogin, this.passwordlogin).subscribe((response: any) => {
 
       LoginUser.reset();
       console.warn(response.token + 'token');
