@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/service/user.service';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-accueil',
@@ -10,7 +10,7 @@ export class AccueilComponent implements OnInit {
 
   private id;
   public nom: string;
-  constructor(private serviceUser: UserService) { }
+  constructor(private serviceMessage: MessageService) { }
 
   ngOnInit() {
     this.nom = localStorage.getItem('UserNomBlogeur');
@@ -21,6 +21,13 @@ export class AccueilComponent implements OnInit {
     //   console.warn(response)
     // }
     // )
+    this.id = localStorage.getItem('UserId');
+    this.serviceMessage.getMessage(this.id).subscribe((response: any) => {
+      console.log(response)
+    })
   }
+
+
+
 
 }
