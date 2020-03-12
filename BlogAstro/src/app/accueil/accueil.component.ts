@@ -19,6 +19,11 @@ export class AccueilComponent implements OnInit {
   ngOnInit() {
     this.nom = localStorage.getItem('UserNomBlogeur');
     this.id = localStorage.getItem('UserId');
+    this.callapiUserPost();
+  }
+
+
+  callapiUserPost() {
     this.serviceMessage.getMessage(this.id).subscribe((response: any) => {
       console.log(response)
       this.PostUsers = response
@@ -29,6 +34,7 @@ export class AccueilComponent implements OnInit {
     this.post = value.post;
     this.serviceMessage.postMessage(this.id, this.post).subscribe((response: any) => {
       this.toastr.success(`Vous venez d'ajouter un commentaire`);
+      this.callapiUserPost();
       PostCom.reset();
       error => {
         console.log(error.error.error)
