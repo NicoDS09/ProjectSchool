@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from './user';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { User } from './user';
 export class UserService {
   public urlUser = "http://localhost:3000/AstroBlog/user/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
 
   postUser(prenom, nom, email, password, nomBlogeur): Observable<any[]> {
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   gettoken() {
-    return localStorage.getItem('token');
+    return this.cookieService.get('token');
   }
 
   verifytoken(): Observable<any[]> {

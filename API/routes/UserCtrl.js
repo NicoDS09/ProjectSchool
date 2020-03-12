@@ -53,7 +53,15 @@ module.exports = {
                 if (cryptr.decrypt(Userfound.password) === password) {
                     let payload = { subject: Userfound.id }
                     let token = jwt.sign(payload, secretKey)
-                    res.status(200).json({ token });
+                    res.status(200).json({
+                        token, 'User': {
+                            'id': Userfound.id,
+                            'prenom': Userfound.prenom,
+                            'nom': Userfound.nom,
+                            'email': Userfound.email,
+                            'nomBlogeur': Userfound.nomBlogeur,
+                        }
+                    });
                 } else {
                     res.status(401).json({ 'error': 'Invalid password' });
                 }

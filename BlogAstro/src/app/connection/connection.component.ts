@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-connection',
@@ -21,7 +23,7 @@ export class ConnectionComponent implements OnInit {
   public passwordlogin: string;
 
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router) { }
+  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router, private cookieService: CookieService) { }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -29,7 +31,7 @@ export class ConnectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.warn('test');
+
   }
 
 
@@ -53,14 +55,17 @@ export class ConnectionComponent implements OnInit {
     this.emaillogin = value.email;
     this.passwordlogin = value.password;
     this.serviceUser.postlogin(this.emaillogin, this.passwordlogin).subscribe((response: any) => {
-
+      //console.log(response);
       LoginUser.reset();
       console.warn(response.token + 'token');
       if (response) this.toastr.success(`Vous êtes connecté `);
-      //localStorage.setItem('connect', 'OK');
-      localStorage.setItem('token', response.token);
+      localStorage.setItem('UserId', response.User.id);
+      localStorage.setItem('UserPrenom', response.User.prenom);
+      localStorage.setItem('UserNom', response.User.nom);
+      localStorage.setItem('UserEmail', response.User.email);
+      localStorage.setItem('UserNomBlogeur', response.User.nomBlogeur);
+      this.cookieService.set('token', response.token);
       this.router.navigateByUrl('/home');
-      // ${value.prenom} ${value.nom}
     },
       error => {
         this.toastr.error(`${error.error.error}`);

@@ -13,14 +13,14 @@ export class AccueilComponent implements OnInit {
   constructor(private serviceUser: UserService) { }
 
   ngOnInit() {
-    this.id = localStorage.getItem('userid');
-    this.serviceUser.getuser(this.id).subscribe((response: any) => {
-      this.nom = response.nomBlogeur;
-    })
-    this.serviceUser.verifytoken().subscribe((response) => {
-      console.warn(response)
-    }
-    )
+    this.nom = localStorage.getItem('UserNomBlogeur');
+    // this.serviceUser.getuser(this.id).subscribe((response: any) => {
+    //   this.nom = response.nomBlogeur;
+    // })
+    // this.serviceUser.verifytoken().subscribe((response) => {
+    //   console.warn(response)
+    // }
+    // )
   }
 
 }

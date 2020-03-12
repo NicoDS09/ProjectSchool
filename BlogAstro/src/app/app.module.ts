@@ -19,7 +19,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { SearchPostComponent } from './search-post/search-post.component';
 import { TokenInterceptorService } from '../app/service/token-interceptor.service';
-
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes = [
   {
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     FormsModule
 
   ],
-  providers: [AuthGuard,
+  providers: [AuthGuard, CookieService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
