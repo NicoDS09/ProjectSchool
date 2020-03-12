@@ -13,6 +13,7 @@ export class AccueilComponent implements OnInit {
   private id;
   public post: string;
   public nom: string;
+  public PostUsers: any;
   constructor(private serviceMessage: MessageService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class AccueilComponent implements OnInit {
     this.id = localStorage.getItem('UserId');
     this.serviceMessage.getMessage(this.id).subscribe((response: any) => {
       console.log(response)
+      this.PostUsers = response
     })
   }
 
@@ -38,3 +40,9 @@ export class AccueilComponent implements OnInit {
 
 
 }
+
+// <div *ngFor="let PostUser of PostUsers">
+//                     <th scope="row">{{PostUser.updatedAt}}</th>
+//                     <td>{{nom}}</td>
+//                     <td>{{PostUser.post}}</td>
+//                 </div>

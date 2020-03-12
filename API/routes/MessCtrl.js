@@ -4,11 +4,11 @@ var models = require('../models');
 module.exports = {
 
     getMess: function (req, res) {
-        var id = req.params.id;
+        var idUser = req.params.idUser;
         models.PostM.findAll({
             attributes: ['id', 'iduser', 'post', 'createdAt', 'updatedAt'],
             where: {
-                id: id,
+                idUser: idUser,
             }
         }).then(function (mess) {
             if (mess) {

@@ -1,6 +1,27 @@
 <app-menu></app-menu>
 {{ nom }}
 
+<div class="container fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Name</th>
+                <th scope="col">post</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div *ngFor="let PostUser of PostUsers">
+                <tr>
+                    <th scope="row">{{PostUser.updatedAt}}</th>
+                    <td>{{nom}}</td>
+                    <td>{{PostUser.post}}</td>
+                </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
+
 
 <div class="container fluid">
     <form (ngSubmit)="PostCommentaire(PostCom.form.value,PostCom)" #PostCom="ngForm">
