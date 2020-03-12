@@ -26,7 +26,7 @@ module.exports = {
         var post = req.body.post;
 
 
-        if (id == null || idUser == null || post == null) {
+        if (idUser == null || post == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
         }
         var newPost = models.PostM.create({

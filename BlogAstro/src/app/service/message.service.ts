@@ -17,5 +17,9 @@ export class MessageService {
     return this.http.get<any[]>(this.urlMessage + id);
   }
 
+  postMessage(idUser, post): Observable<any[]> {
+    let data = { idUser: idUser, post: post }
+    return this.http.post<any[]>(this.urlMessage, data);
+  }
 
 }

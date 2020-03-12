@@ -3,12 +3,16 @@
 
 
 <div class="container fluid">
-    <div class="row">
-        <div class="col-md-6">
-            Post Message :
+    <form (ngSubmit)="PostCommentaire(PostCom.form.value,PostCom)" #PostCom="ngForm">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Post Message :</label>
+            <textarea class="form-control" #posts="ngModel" type="text" [(ngModel)]="post" id="post" name="post"
+                rows="3"></textarea>
         </div>
-        <div class="col-md-6">
-
+        <div class="row">
+            <div class="col-md-5">
+                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary">Secondary</button>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
