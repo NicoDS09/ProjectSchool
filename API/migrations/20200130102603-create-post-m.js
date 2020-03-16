@@ -16,6 +16,9 @@ module.exports = {
           key: 'id',
         },
       },
+      sujet: {
+        type: Sequelize.STRING
+      },
       post: {
         type: Sequelize.STRING
       },

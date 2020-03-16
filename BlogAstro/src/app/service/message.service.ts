@@ -17,8 +17,12 @@ export class MessageService {
     return this.http.get<any[]>(this.urlMessage + id);
   }
 
-  postMessage(idUser, post): Observable<any[]> {
-    let data = { idUser: idUser, post: post }
+  getALLMessage(): Observable<any[]> {
+    return this.http.get<any[]>(this.urlMessage);
+  }
+
+  postMessage(idUser, sujet, post): Observable<any[]> {
+    let data = { idUser: idUser, post: post, sujet: sujet }
     return this.http.post<any[]>(this.urlMessage, data);
   }
 

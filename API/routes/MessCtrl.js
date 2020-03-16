@@ -6,7 +6,7 @@ module.exports = {
     getMess: function (req, res) {
         var idUser = req.params.idUser;
         models.PostM.findAll({
-            attributes: ['id', 'iduser', 'post', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
             where: {
                 idUser: idUser,
             }
@@ -21,8 +21,23 @@ module.exports = {
         });
     },
 
+    getAllMess: function (req, res) {
+        models.PostM.findAll({
+            attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
+        }).then(function (mess) {
+            if (mess) {
+                res.status(201).json(mess);
+            } else {
+                res.status(404).json({ 'error': 'mess not found' });
+            }
+        }).catch(function (err) {
+            res.status(500).json({ 'error': err });
+        });
+    },
+
     postMess: function (req, res) {
         var idUser = req.body.idUser;
+        var sujet = req.body.sujet;
         var post = req.body.post;
 
 
@@ -31,12 +46,15 @@ module.exports = {
         }
         var newPost = models.PostM.create({
             idUser: idUser,
+            sujet: sujet,
             post: post,
+
         })
             .then(function (newPost) {
                 return res.status(201).json({
                     'id': newPost.id,
                     'idUser': newPost.idUser,
+                    'sujet': newPost.sujet,
                     'post': newPost.post,
                 })
             })
@@ -50,6 +68,7 @@ module.exports = {
     UpdateMess: function (req, res) {
         var id = req.params.id;
         var post = req.body.post;
+        var sujet = req.body.sujet;
         var updatedAt = Date.now();
         if (id == null | post == null) {
             return res.status(400).json({ 'error': 'missing parameters' });
@@ -62,6 +81,7 @@ module.exports = {
                 if (Messfound) {
                     Messfound.update({
                         post: post,
+                        sujet: sujet,
                         updatedAt: updatedAt,
                     })
 

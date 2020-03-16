@@ -1,7 +1,17 @@
 <app-menu></app-menu>
 {{ nom }}
 
-<div class="container fluid">
+<div *ngFor="let PostUser of PostUsers">
+    <div class="container fluid">
+        {{PostUser.updatedAt}}
+        {{PostUser.nomBlogeur}}
+        {{PostUser.nomBlogeur}}
+        {{PostUser.sujet}}
+    </div>
+</div>
+
+<br>
+<!-- <div class="container fluid">
     <table class="table">
         <thead>
             <tr>
@@ -14,17 +24,21 @@
             <div *ngFor="let PostUser of PostUsers">
                 <tr>
                     <th scope="row">{{PostUser.updatedAt}}</th>
-                    <td>{{nom}}</td>
+                    <td>{{PostUser.nomBlogeur}}</td>
                     <td>{{PostUser.post}}</td>
                 </tr>
             </div>
         </tbody>
     </table>
-</div>
+</div> -->
 
 
 <div class="container fluid">
     <form (ngSubmit)="PostCommentaire(PostCom.form.value,PostCom)" #PostCom="ngForm">
+        <div class="form-group">
+            <label>Sujet</label>
+            <input class="form-control" #sujets="ngModel" type="text" [(ngModel)]="sujet" id="sujet" name="sujet">
+        </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Post Message :</label>
             <textarea class="form-control" #posts="ngModel" type="text" [(ngModel)]="post" id="post" name="post"

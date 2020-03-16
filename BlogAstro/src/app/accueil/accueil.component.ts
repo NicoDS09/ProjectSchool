@@ -14,6 +14,7 @@ export class AccueilComponent implements OnInit {
   public post: string;
   public nom: string;
   public PostUsers: any;
+  public sujet: string;
   constructor(private serviceMessage: MessageService, private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -22,9 +23,12 @@ export class AccueilComponent implements OnInit {
     this.callapiUserPost();
   }
 
+  callapiUser() {
+
+  }
 
   callapiUserPost() {
-    this.serviceMessage.getMessage(this.id).subscribe((response: any) => {
+    this.serviceMessage.getALLMessage().subscribe((response: any) => {
       console.log(response)
       this.PostUsers = response
     })
@@ -32,7 +36,9 @@ export class AccueilComponent implements OnInit {
 
   PostCommentaire(value: any, PostCom: NgForm) {
     this.post = value.post;
-    this.serviceMessage.postMessage(this.id, this.post).subscribe((response: any) => {
+    this.sujet = value.sujet;
+    console.log(this.sujet);
+    this.serviceMessage.postMessage(this.id, this.sujet, this.post).subscribe((response: any) => {
       this.toastr.success(`Vous venez d'ajouter un commentaire`);
       this.callapiUserPost();
       PostCom.reset();

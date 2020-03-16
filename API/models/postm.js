@@ -15,6 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    sujet: {
+      type: DataTypes.STRING
+    },
     post: {
       type: DataTypes.STRING
     },
