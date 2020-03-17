@@ -28,9 +28,9 @@ export class AccueilComponent implements OnInit {
   }
 
   callapiUserPost() {
-    this.serviceMessage.getALLMessage().subscribe((response: any) => {
+    this.serviceMessage.getMessageUser().subscribe((response: any) => {
       console.log(response)
-      this.PostUsers = response
+      this.PostUsers = response;
     })
   }
 

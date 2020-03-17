@@ -9,8 +9,13 @@ import { User } from './user';
 export class MessageService {
 
   public urlMessage: string = 'http://localhost:3000/AstroBlog/postm/'
+  public urlMessageUser: string = 'http://localhost:3000/AstroBlog/userMessage/';
 
   constructor(private http: HttpClient) {
+  }
+
+  getMessageUser(): Observable<any[]> {
+    return this.http.get<any[]>(this.urlMessageUser);
   }
 
   getMessage(id): Observable<any[]> {

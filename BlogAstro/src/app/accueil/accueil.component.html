@@ -1,10 +1,8 @@
 <app-menu></app-menu>
-{{ nom }}
 
 <div *ngFor="let PostUser of PostUsers">
     <div class="container fluid">
-        {{PostUser.updatedAt}}
-        {{PostUser.nomBlogeur}}
+        {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC'}}
         {{PostUser.nomBlogeur}}
         {{PostUser.sujet}}
     </div>
@@ -46,7 +44,7 @@
         </div>
         <div class="row">
             <div class="col-md-5">
-                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary">Secondary</button>
+                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary">envoyer</button>
             </div>
         </div>
     </form>
