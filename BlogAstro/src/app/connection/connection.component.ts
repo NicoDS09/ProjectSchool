@@ -55,16 +55,18 @@ export class ConnectionComponent implements OnInit {
     this.emaillogin = value.email;
     this.passwordlogin = value.password;
     this.serviceUser.postlogin(this.emaillogin, this.passwordlogin).subscribe((response: any) => {
-      //console.log(response);
+      sessionStorage.setItem('UserId', response.User.id);
+      this.cookieService.set(`token${response.User.id}`, response.token);
+      console.log(response);
       LoginUser.reset();
-      console.warn(response.token + 'token');
+      console.warn(response.token + `token${response.User.id}`);
       if (response) this.toastr.success(`Vous êtes connecté `);
-      localStorage.setItem('UserId', response.User.id);
-      localStorage.setItem('UserPrenom', response.User.prenom);
-      localStorage.setItem('UserNom', response.User.nom);
-      localStorage.setItem('UserEmail', response.User.email);
-      localStorage.setItem('UserNomBlogeur', response.User.nomBlogeur);
-      this.cookieService.set('token', response.token);
+      sessionStorage.setItem('UserId', response.User.id);
+      sessionStorage.setItem('UserPrenom', response.User.prenom);
+      sessionStorage.setItem('UserNom', response.User.nom);
+      sessionStorage.setItem('UserEmail', response.User.email);
+      sessionStorage.setItem('UserNomBlogeur', response.User.nomBlogeur);
+      this.cookieService.set(`token${response.User.id}`, response.token);
       this.router.navigateByUrl('/home');
     },
       error => {

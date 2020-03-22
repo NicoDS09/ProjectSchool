@@ -12,9 +12,13 @@
     "cors": "^2.8.5",
     "cryptr": "^6.0.1",
     "express": "^4.17.1",
+    "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
     "msql": "^1.0.3",
     "mysql": "^2.17.1",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "socket-io": "^1.0.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   }
 }

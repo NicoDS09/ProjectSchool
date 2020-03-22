@@ -19,6 +19,7 @@ export class UserService {
   }
 
   postlogin(email, password): Observable<any[]> {
+    console.log(email + ' ' + password);
     let data = { email: email, password: password }
     return this.http.post<any[]>(this.urlUser + 'login', data);
   }
@@ -28,7 +29,8 @@ export class UserService {
   }
 
   gettoken() {
-    return this.cookieService.get('token');
+    let id = sessionStorage.getItem('UserId');
+    return this.cookieService.get(`token${id}`);
   }
 
   verifytoken(): Observable<any[]> {

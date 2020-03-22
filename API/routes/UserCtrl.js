@@ -23,7 +23,7 @@ module.exports = {
 
         con.query("SELECT prenom, nom, nomBlogeur, email,sujet,post, PostMs.updatedAt FROM Users INNER JOIN PostMs ON Users.id = PostMs.idUser ORDER BY PostMs.updatedAt DESC", function (err, result, fields) {
             if (err) throw err;
-            console.log(result);
+            // console.log(result);
             res.status(201).json(result);
         });
     },

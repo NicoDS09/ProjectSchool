@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private toast: ToastrService, private cookieService: CookieService) { }
 
   ngOnInit() {
-    this.test = localStorage.getItem('InformationsUser');
+    this.test = sessionStorage.getItem('InformationsUser');
     console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
     console.log(JSON.stringify(this.test));
     this.home = this.router.isActive('home', true);
@@ -25,9 +25,9 @@ export class MenuComponent implements OnInit {
   }
 
   deconnect() {
-    //localStorage.removeItem("userid");
-    // localStorage.removeItem("token");
-    this.cookieService.delete('token');
+    let id = sessionStorage.getItem('UserId');
+    this.cookieService.delete(`token${id}`);
+    window.sessionStorage.clear();
     this.toast.success('Deconnecté');
     this.router.navigate(['']);
   }

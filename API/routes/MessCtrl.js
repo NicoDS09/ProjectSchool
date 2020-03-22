@@ -1,5 +1,5 @@
 var models = require('../models');
-
+var server = require('../server');
 
 module.exports = {
 
@@ -51,6 +51,7 @@ module.exports = {
 
         })
             .then(function (newPost) {
+                server.callmessage();
                 return res.status(201).json({
                     'id': newPost.id,
                     'idUser': newPost.idUser,
