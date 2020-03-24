@@ -16,10 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
 import { AuthGuard } from './service/auth.guard';
 import { MenuComponent } from './menu/menu.component';
-import { PostMessageComponent } from './post-message/post-message.component';
-import { SearchPostComponent } from './search-post/search-post.component';
 import { TokenInterceptorService } from '../app/service/token-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CommentaireComponent } from './commentaire/commentaire.component';
 
 const appRoutes: Routes = [
   {
@@ -30,11 +29,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'post', component: PostMessageComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'post-search', component: SearchPostComponent,
+    path: 'commentaires/:id', component: CommentaireComponent,
     canActivate: [AuthGuard]
   },
 ]
@@ -45,8 +40,7 @@ const appRoutes: Routes = [
     ConnectionComponent,
     AccueilComponent,
     MenuComponent,
-    PostMessageComponent,
-    SearchPostComponent
+    CommentaireComponent
   ],
   imports: [
     BrowserModule,

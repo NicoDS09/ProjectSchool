@@ -21,7 +21,7 @@ module.exports = {
 
     getMessagePost: function (req, res) {
 
-        con.query("SELECT prenom, nom, nomBlogeur, email,sujet,post, PostMs.updatedAt FROM Users INNER JOIN PostMs ON Users.id = PostMs.idUser ORDER BY PostMs.updatedAt DESC", function (err, result, fields) {
+        con.query("SELECT PostMs.id, PostMs.idUser, prenom, nom, nomBlogeur, email,sujet,post, PostMs.updatedAt FROM Users INNER JOIN PostMs ON Users.id = PostMs.idUser ORDER BY PostMs.updatedAt DESC", function (err, result, fields) {
             if (err) throw err;
             // console.log(result);
             res.status(201).json(result);

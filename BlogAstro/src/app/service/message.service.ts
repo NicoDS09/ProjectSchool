@@ -31,4 +31,13 @@ export class MessageService {
     return this.http.post<any[]>(this.urlMessage, data);
   }
 
+  putMessage(id, sujet, post): Observable<any[]> {
+    let data = { post: post, sujet: sujet }
+    return this.http.put<any[]>(this.urlMessage + id, data);
+  }
+
+  deleteMessage(id): Observable<any[]> {
+    return this.http.delete<any[]>(this.urlMessage + id);
+  }
+
 }

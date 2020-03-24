@@ -1,13 +1,70 @@
 <app-menu></app-menu>
 
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Refresh Post</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="RefreshPost(UpdatePost.form.value,UpdatePost)" #UpdatePost="ngForm">
+            <div class="form-group">
+                <label>Sujet</label>
+                <input class="form-control" #RefSujets="ngModel" type="text" [(ngModel)]="sujetRefresh" id="Refsujet"
+                    name="Refsujet">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Post Message :</label>
+                <textarea class="form-control" #Refposts="ngModel" type="text" [(ngModel)]="postRefresh" id="Refpost"
+                    name="Refpost" rows="3"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="submit" [disabled]="!UpdatePost.form.valid"
+                        class="btn btn-secondary button">envoyer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
 <div *ngFor="let PostUser of PostUsers">
     <div class="container fluid">
-        {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC'}}
-        {{PostUser.nomBlogeur}}
-        {{PostUser.sujet}}
+        <div class="row">
+            <div class="col-md-10">
+                <div class="container smess pointer" (click)="commentaires(PostUser.id)">
+                    <div class="row">
+                        <div class="col-md-3">
+                            {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC'}}
+                        </div>
+                        <div class="col-md-5">
+                            {{PostUser.nomBlogeur}}
+                        </div>
+                        <div class="col-md-4">
+                            {{PostUser.sujet}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="PostUser.idUser==id">
+                <div class="col-md-1">
+                    <img class="imglogo pointer logo"
+                        (click)="openModalWithClass(template,PostUser.sujet,PostUser.post,PostUser.id)"
+                        src="assets/refresh.svg" width="30" height="30" alt="">
+                </div>
+            </div>
+            <div *ngIf="PostUser.idUser==id">
+                <div class="col-md-1">
+                    <img class="imglogo pointer logo" (click)="delete(PostUser.id,PostUser.sujet)"
+                        src="assets/delete.svg" width="30" height="30" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 <br>
 <!-- <div class="container fluid">
     <table class="table">
@@ -44,7 +101,7 @@
         </div>
         <div class="row">
             <div class="col-md-5">
-                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary">envoyer</button>
+                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary button">envoyer</button>
             </div>
         </div>
     </form>

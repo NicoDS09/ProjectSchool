@@ -4,11 +4,11 @@ var server = require('../server');
 module.exports = {
 
     getMess: function (req, res) {
-        var idUser = req.params.idUser;
+        var id = req.params.id;
         models.PostM.findAll({
             attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
             where: {
-                idUser: idUser,
+                id: id,
             }
         }).then(function (mess) {
             if (mess) {
@@ -21,9 +21,13 @@ module.exports = {
         });
     },
 
-    getAllMess: function (req, res) {
+    getMessBySubject: function (req, res) {
+        var sujet = req.body.sujet
         models.PostM.findAll({
             attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
+            where: {
+                sujet: sujet,
+            }
         }).then(function (mess) {
             if (mess) {
                 res.status(201).json(mess);

@@ -20,8 +20,6 @@ export class MenuComponent implements OnInit {
     console.log(JSON.stringify(this.test));
     this.home = this.router.isActive('home', true);
     this.post = this.router.isActive('post', true);
-    console.error(this.home + 'home');
-    console.error(this.post + 'post');
   }
 
   deconnect() {
