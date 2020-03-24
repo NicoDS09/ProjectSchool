@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'commentaires/:id', component: CommentaireComponent,
+    path: 'publication/:id/:idUser', component: CommentaireComponent,
     canActivate: [AuthGuard]
   },
 ]

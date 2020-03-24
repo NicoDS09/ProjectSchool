@@ -6,7 +6,7 @@ module.exports = {
     getCom: function (req, res) {
         var idpost = req.params.idpost;
         models.commentaire.findAll({
-            attributes: ['id', 'idpost', 'comm', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'idpost', 'idUser', 'comm', 'createdAt', 'updatedAt'],
             where: {
                 idpost: idpost,
             }
@@ -23,6 +23,7 @@ module.exports = {
 
     postCom: function (req, res) {
         var idpost = req.body.idpost;
+        var idUser = req.body.idUser
         var comm = req.body.comm;
 
 
@@ -31,12 +32,14 @@ module.exports = {
         }
         var newPost = models.commentaire.create({
             idpost: idpost,
+            idUser: idUser,
             comm: comm,
         })
             .then(function (newPost) {
                 return res.status(201).json({
                     'id': newPost.id,
                     'idpost': newPost.idpost,
+                    'idUser': newPost.idUser,
                     'com': newPost.comm,
                     'createat': newPost.createdAt,
                     'updateat': newPost.updatedAt,

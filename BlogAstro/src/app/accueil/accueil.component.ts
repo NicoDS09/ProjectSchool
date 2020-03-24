@@ -106,9 +106,9 @@ export class AccueilComponent implements OnInit {
     }
   }
 
-  commentaires(id) {
+  commentaires(id, idUser) {
     console.warn(id + 'commentaires');
-    this.router.navigateByUrl('/commentaires/' + id);
+    this.router.navigateByUrl('/publication/' + id + '/' + idUser);
   }
 
 

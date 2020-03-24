@@ -1,1 +1,23 @@
-<p>commentaire works!</p>
+<div *ngFor="let PostUser of PostUsers">
+    <div class="container fluid cont">
+        <div class="row">
+            <div class="col-md-4">
+                {{name}}
+            </div>
+            <div class="col-md-4">
+                {{PostUser.sujet}}
+            </div>
+            <div class="col-md-4">
+                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC'}}
+            </div>
+        </div>
+        <br>
+        {{PostUser.post}}
+    </div>
+    <div class="container fluid">
+        <h4>Commentaires :</h4>
+        <div *ngFor="let commentaire of commentaires">
+            {{commentaire.comm}}
+        </div>
+    </div>
+</div>
