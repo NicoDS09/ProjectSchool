@@ -18,4 +18,9 @@ export class CommentairesService {
   getCommentairesByPost(idPost): Observable<any[]> {
     return this.http.get<any[]>(this.urlCommentaires + idPost);
   }
+
+  postCommentaire(idpost, idUser, comm): Observable<any[]> {
+    let data = { idUser: idUser, idpost: idpost, comm: comm }
+    return this.http.post<any[]>(this.urlCommentaires, data);
+  }
 }

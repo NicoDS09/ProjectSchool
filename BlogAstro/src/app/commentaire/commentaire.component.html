@@ -8,7 +8,7 @@
                 {{PostUser.sujet}}
             </div>
             <div class="col-md-4">
-                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+1'}}
+                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
             </div>
         </div>
         <br>
@@ -18,8 +18,23 @@
         <h4>Commentaires :</h4>
         <div *ngFor="let commentaire of commentaires">
             {{commentaire.Users}}
-            {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+1'}}
+            {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
             {{commentaire.comm}}
         </div>
     </div>
+</div>
+<br>
+<div class="container fluid">
+    <form (ngSubmit)="PostCommentaire(PostCom.form.value,PostCom)" #PostCom="ngForm">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Post Commentaires :</label>
+            <textarea class="form-control" #comms="ngModel" type="text" [(ngModel)]="commentaire" id="commentaire"
+                name="commentaire" rows="3"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary button">envoyer</button>
+            </div>
+        </div>
+    </form>
 </div>
