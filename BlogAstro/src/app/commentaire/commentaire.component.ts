@@ -42,7 +42,7 @@ export class CommentaireComponent implements OnInit {
   }
 
   callapiGetCom(id) {
-    this.CommentairesService.getCommentairesByPost(id).subscribe((response: any) => {
+    this.CommentairesService.getCommentairesUser(id).subscribe((response: any) => {
       console.log(response);
       this.commentaires = response;
     })
