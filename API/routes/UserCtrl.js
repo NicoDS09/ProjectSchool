@@ -19,6 +19,17 @@ var con = mysql.createConnection({
 module.exports = {
 
 
+    getCommUser: function (req, res) {
+        idPost = req.params.idPost;
+
+        con.query("SELECT nomBlogeur AS Users, comm, commentaires.id, commentaires.idpost, commentaires.idUser, commentaires.updatedAt FROM commentaires INNER JOIN Users ON Users.id = commentaires.idUser WHERE commentaires.idpost = '" + idPost + "'  ORDER BY commentaires.updatedAt DESC", function (err, result, fields) {
+            if (err) throw err;
+            // console.log(result);
+            res.status(201).json(result);
+        });
+    },
+
+
     getMessagePost: function (req, res) {
 
         con.query("SELECT PostMs.id, PostMs.idUser, prenom, nom, nomBlogeur, email,sujet,post, PostMs.updatedAt FROM Users INNER JOIN PostMs ON Users.id = PostMs.idUser ORDER BY PostMs.updatedAt DESC", function (err, result, fields) {
