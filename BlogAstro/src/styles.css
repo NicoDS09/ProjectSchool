@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ecriture {
+    font-weight: bold;
+}
+
+span.name {
+    color :#3399ff;
+}

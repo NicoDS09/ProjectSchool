@@ -38,13 +38,13 @@
                 <div class="container smess pointer" (click)="commentaires(PostUser.id,PostUser.idUser)">
                     <div class="row">
                         <div class="col-md-3">
-                            {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
+                            <span class="ecriture">à : </span> {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
                         </div>
                         <div class="col-md-5">
-                            {{PostUser.nomBlogeur}}
+                            <span class="ecriture">de : </span> <span class="name">{{PostUser.nomBlogeur}}</span>
                         </div>
                         <div class="col-md-4">
-                            {{PostUser.sujet}}
+                            <span class="ecriture">de : </span> {{PostUser.sujet}}
                         </div>
                     </div>
                 </div>

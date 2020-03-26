@@ -1,14 +1,14 @@
 <div *ngFor="let PostUser of PostUsers">
     <div class="container fluid cont">
         <div class="row">
-            <div class="col-md-4">
-                {{name}}
+            <div class="col-md-4 ecriture">
+                de : <span class="name">{{name}}</span>
             </div>
             <div class="col-md-4">
-                {{PostUser.sujet}}
+                <span class="ecriture"> à :</span> {{PostUser.sujet}}
             </div>
             <div class="col-md-4">
-                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
+                <span class="ecriture"> publication :</span> {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
             </div>
         </div>
         <br>
@@ -17,9 +17,17 @@
     <div class="container fluid">
         <h4>Commentaires :</h4>
         <div *ngFor="let commentaire of commentaires">
-            {{commentaire.Users}}
-            {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
-            {{commentaire.comm}}
+            <div class="container fluid contcom">
+                <div class="row">
+                    <div class="col-md-6 ecriture">
+                        de : <span class="name"></span>{{commentaire.Users}}
+                    </div>
+                    <div class="col-md-6">
+                        à : {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
+                    </div>
+                </div>
+                {{commentaire.comm}}
+            </div>
         </div>
     </div>
 </div>
