@@ -8,7 +8,7 @@
                 {{PostUser.sujet}}
             </div>
             <div class="col-md-4">
-                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC'}}
+                {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+1'}}
             </div>
         </div>
         <br>
@@ -17,6 +17,8 @@
     <div class="container fluid">
         <h4>Commentaires :</h4>
         <div *ngFor="let commentaire of commentaires">
+            {{commentaire.Users}}
+            {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+1'}}
             {{commentaire.comm}}
         </div>
     </div>
