@@ -5,7 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE',
+
     },
     idUser: {
       type: DataTypes.INTEGER,
@@ -19,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     },
     post: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     createdAt: {
       allowNull: false,

@@ -15,6 +15,7 @@ module.exports = {
           model: 'PostMs',
           key: 'id',
         },
+        onDelete: 'CASCADE',
       },
       idUser: {
         type: Sequelize.INTEGER,
@@ -25,7 +26,7 @@ module.exports = {
         },
       },
       comm: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
