@@ -18,16 +18,16 @@
                     <a class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ng-template>
-            <!-- <div *ngIf="post; else elseBlock1">
+            <div *ngIf="post; else elseBlock1">
                 <li class="nav-item active">
-                    <a class="nav-link" [routerLink]="['/commentaires']">Post</a>
+                    <a class="nav-link" [routerLink]="['/search']">Search</a>
                 </li>
             </div>
             <ng-template #elseBlock1>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/commentaires']">Post <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" [routerLink]="['/search']">Search <span class="sr-only">(current)</span></a>
                 </li>
-            </ng-template> -->
+            </ng-template>
         </ul>
         <button type="button" class="btn btn-danger" (click)="deconnect()">Déconnection</button>
     </div>
