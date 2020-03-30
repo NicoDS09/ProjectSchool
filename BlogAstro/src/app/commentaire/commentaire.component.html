@@ -8,7 +8,7 @@
                 <span class="ecriture"> à :</span> {{PostUser.sujet}}
             </div>
             <div class="col-md-4">
-                <span class="ecriture"> publication :</span> {{PostUser.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
+                <span class="ecriture"> publication :</span> {{PostUser.updatedAt | date: 'd/MM/y, HH:mm'}}
             </div>
         </div>
         <br>
@@ -23,9 +23,10 @@
                         de : <span class="name"></span>{{commentaire.Users}}
                     </div>
                     <div class="col-md-6">
-                        à : {{commentaire.updatedAt | date: 'd/MM/y, HH:mm':'UTC+2'}}
+                        à : {{commentaire.updatedAt | date: 'd/MM/y, HH:mm'}}
                     </div>
                 </div>
+                <br>
                 {{commentaire.comm}}
             </div>
         </div>

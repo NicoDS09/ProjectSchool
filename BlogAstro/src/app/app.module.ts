@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu.component';
 import { TokenInterceptorService } from '../app/service/token-interceptor.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CommentaireComponent } from './commentaire/commentaire.component';
+import { SearchPostComponent } from './search-post/search-post.component';
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
   },
   {
     path: 'home', component: AccueilComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'search', component: SearchPostComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -40,7 +45,8 @@ const appRoutes: Routes = [
     ConnectionComponent,
     AccueilComponent,
     MenuComponent,
-    CommentaireComponent
+    CommentaireComponent,
+    SearchPostComponent
   ],
   imports: [
     BrowserModule,
