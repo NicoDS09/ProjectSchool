@@ -1,1 +1,43 @@
-<p>search-post works!</p>
+<app-menu></app-menu>
+
+<div class="container fluid">
+    <br>
+    <label>Chercher un sujet :</label>
+    <br>
+    <form (ngSubmit)="searchPostf(searchPost.form.value,searchPost)" #searchPost="ngForm">
+        <input #sujets="ngModel" type="text" required class="validate" class="form-control" id="sujet"
+            [(ngModel)]="sujet" name="sujet">
+        <br>
+        <button type="submit" [disabled]="!searchPost.form.valid" class="btn btn-secondary">envoyer</button>
+    </form>
+    <br>
+    <div *ngIf="notFound">
+        <div class="alert alert-danger" role="alert">
+            sujet pas trouvé !
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div *ngFor="let PostUser of PostUsers">
+    <div class="container fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="container smess pointer" (click)="commentaires(PostUser.id,PostUser.idUser)">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="ecriture">à : </span> {{PostUser.updatedAt | date: 'd/MM/y, HH:mm'}}
+                        </div>
+                        <div class="col-md-5">
+                            <span class="ecriture">de : </span> <span class="name">{{PostUser.nomBlogeur}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="ecriture">de : </span> {{PostUser.sujet}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

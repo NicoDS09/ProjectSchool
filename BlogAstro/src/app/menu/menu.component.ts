@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class MenuComponent implements OnInit {
   public home: boolean;
-  public post: boolean;
+  public search: boolean;
   public test: any;
   constructor(private router: Router, private toast: ToastrService, private cookieService: CookieService) { }
 
@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
     console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
     console.log(JSON.stringify(this.test));
     this.home = this.router.isActive('home', true);
-    this.post = this.router.isActive('post', true);
+    this.search = this.router.isActive('search', true);
   }
 
   deconnect() {

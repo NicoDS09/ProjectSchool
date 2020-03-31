@@ -19,7 +19,7 @@ exports.router = (function () {
     apiRouter.route('/user/:id/').put(UserCtrl.UpdateUser);
 
     //PostMessage route 
-    apiRouter.route('/postm/').get(MessCtrl.getMessBySubject);
+    apiRouter.route('/postmSujet/').post(MessCtrl.getMessBySubject);
     apiRouter.route('/postm/:id').get(MessCtrl.getMess);
     apiRouter.route('/postm/:id').put(MessCtrl.UpdateMess);
     apiRouter.route('/postm/:id').delete(MessCtrl.deleteMess);

@@ -1,10 +1,24 @@
 var models = require('../models');
 var server = require('../server');
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost",
+    port: "8889",
+    user: "root",
+    password: "root",
+    database: "astro"
+});
 
 module.exports = {
 
     getMess: function (req, res) {
         var id = req.params.id;
+
+        if (id == null) {
+            return res.status(400).json({ 'error': 'missing parameters' });
+        }
+
         models.PostM.findAll({
             attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
             where: {
@@ -23,19 +37,17 @@ module.exports = {
 
     getMessBySubject: function (req, res) {
         var sujet = req.body.sujet
-        models.PostM.findAll({
-            attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
-            where: {
-                sujet: sujet,
-            }
-        }).then(function (mess) {
-            if (mess) {
-                res.status(201).json(mess);
+
+        if (sujet == null) {
+            return res.status(400).json({ 'error': 'missing parameters' });
+        }
+        con.query("SELECT PostMs.id, PostMs.idUser, prenom, nom, nomBlogeur, email,sujet,post, PostMs.updatedAt FROM Users INNER JOIN PostMs ON Users.id = PostMs.idUser WHERE PostMs.sujet = '" + sujet + "'   ORDER BY PostMs.updatedAt DESC", function (err, result, fields) {
+            if (err) throw err;
+            if (result.length != 0) {
+                res.status(201).json(result);
             } else {
-                res.status(404).json({ 'error': 'mess not found' });
+                res.status(404).json({ 'erro': 'not found' });
             }
-        }).catch(function (err) {
-            res.status(500).json({ 'error': err });
         });
     },
 
@@ -91,6 +103,7 @@ module.exports = {
                     })
 
                         .then(function () {
+                            server.callmessage();
                             return res.status(201).json({
                                 'id': id,
                                 'post': post,
@@ -121,6 +134,7 @@ module.exports = {
         })
             .then(function (postfound) {
                 if (postfound) {
+                    server.callmessage();
                     return res.status(201).json({ 'post': `${id} deleted` });
                 }
                 else {

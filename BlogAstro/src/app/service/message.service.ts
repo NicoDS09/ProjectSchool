@@ -14,6 +14,11 @@ export class MessageService {
   constructor(private http: HttpClient) {
   }
 
+  getMessageByPost(sujet): Observable<any[]> {
+    let data = { sujet: sujet }
+    return this.http.post<any[]>('http://localhost:3000/AstroBlog/postmSujet', data);
+  }
+
   getMessageUser(): Observable<any[]> {
     return this.http.get<any[]>(this.urlMessageUser);
   }
