@@ -9,6 +9,7 @@ server.use(cors());
 io.on('connection', function (socket) {
     console.log('im socket');
     socket.join('some room');
+    socket.join('commentaires');
 })
 
 
@@ -27,16 +28,10 @@ http.listen(3000, function () {
     console.log('Server en écoute :)');
 });
 
-
-// module.exports = {
-//     callmessage: function () {
-//         io.to('some room').emit('test event', 'test');
-//         console.log('ojdejode');
-//         console.log('feyeueu')
-//     }
-// }
-
 exports.callmessage = function () {
     io.to('some room').emit('test event', 'test');
-    console.log('ojdejode');
+}
+
+exports.callcommentaire = function () {
+    io.to('commentaires').emit('commentaires', 'commentaires');
 }

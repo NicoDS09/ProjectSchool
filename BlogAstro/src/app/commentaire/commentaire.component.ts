@@ -5,6 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 import { CommentairesService } from 'src/app/service/commentaires.service';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { WebSocketService } from '../service/web-socket.service';
 
 @Component({
   selector: 'app-commentaire',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CommentaireComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private serviceMessage: MessageService, private userService: UserService, private CommentairesService: CommentairesService, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, private serviceMessage: MessageService, private userService: UserService, private CommentairesService: CommentairesService, private toastr: ToastrService, private webSocketService: WebSocketService) { }
   public id;
   public idUser;
   public PostUsers;
@@ -30,6 +31,13 @@ export class CommentaireComponent implements OnInit {
     this.callapiUserPost();
     this.callapiGetUser(this.idUser);
     this.callapiGetCom(this.id);
+    this.webSocketService.listen('commentaires').subscribe((data) => {
+      console.log(data + 'rtt');
+      console.warn('socket')
+      this.callapiUserPost();
+      this.callapiGetUser(this.idUser);
+      this.callapiGetCom(this.id);
+    })
   }
 
   callapiUserPost() {
