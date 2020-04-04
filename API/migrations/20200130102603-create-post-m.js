@@ -23,6 +23,9 @@ module.exports = {
       post: {
         type: Sequelize.TEXT
       },
+      pic: {
+        type: Sequelize.TEXT('long')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     post: {
       type: DataTypes.TEXT
     },
+    pic: {
+      type: DataTypes.TEXT('long')
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE
