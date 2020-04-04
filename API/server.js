@@ -5,12 +5,17 @@ var server = require('express')();
 var http = require('http').Server(server);
 var io = require('socket.io')(http);
 server.use(cors());
+var fs = require('fs');
+
 
 io.on('connection', function (socket) {
     console.log('im socket');
     socket.join('some room');
     socket.join('commentaires');
 })
+
+// server.use(express.static());
+
 
 
 server.use(function (req, res, next) {
@@ -19,10 +24,13 @@ server.use(function (req, res, next) {
     next();
 });
 
+server.use(bodyParser({ limit: '50mb' }));
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use('/AstroBlog/', apiRouter);
+
+
 
 http.listen(3000, function () {
     console.log('Server en écoute :)');
@@ -34,4 +42,8 @@ exports.callmessage = function () {
 
 exports.callcommentaire = function () {
     io.to('commentaires').emit('commentaires', 'commentaires');
+}
+
+exports.callpicture = function () {
+
 }
