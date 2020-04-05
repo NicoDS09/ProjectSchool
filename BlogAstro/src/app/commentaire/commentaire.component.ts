@@ -22,12 +22,15 @@ export class CommentaireComponent implements OnInit {
   public name: string;
   public commentaires;
   public commentaire;
+  public pic: string;
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.idUser = this.route.snapshot.paramMap.get('idUser');
     this.idconnect = sessionStorage.getItem('UserId');
     console.warn(this.id + 'testcomm')
+    this.pic = `assets/${this.id}.jpg`;
+    console.log(this.pic)
     this.callapiUserPost();
     this.callapiGetUser(this.idUser);
     this.callapiGetCom(this.id);
@@ -67,7 +70,7 @@ export class CommentaireComponent implements OnInit {
       this.toastr.error('complétez le commentaire svp');
     } else {
       this.CommentairesService.postCommentaire(this.id, this.idconnect, this.commentaire).subscribe((response: any) => {
-        this.toastr.success(`Vous venez d'ajouter un commentaire`);
+        this.toastr.success(`Vous venez d'ajouter une publication`);
         this.callapiGetCom(this.id);
         PostCom.reset();
         error => {

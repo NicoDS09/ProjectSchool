@@ -21,6 +21,7 @@ export class AccueilComponent implements OnInit {
   public sujetRefresh: string;
   public postRefresh: string;
   public idRefresh: number;
+  public file;
   modalRef: BsModalRef;
   constructor(private serviceMessage: MessageService, private toastr: ToastrService, private webSocketService: WebSocketService, private modalService: BsModalService, private router: Router) { }
 
@@ -36,6 +37,7 @@ export class AccueilComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.nom = sessionStorage.getItem('UserNomBlogeur');
     this.id = sessionStorage.getItem('UserId');
     this.callapiUserPost();
@@ -54,22 +56,31 @@ export class AccueilComponent implements OnInit {
     })
   }
 
-  PostCommentaire(value: any, PostCom: NgForm) {
+  PostCommentaire(value: any, PostCom: NgForm, event) {
     this.post = value.post;
     this.sujet = value.sujet;
-    // console.log(this.sujet);
+    console.log(this.sujet);
     if (value.post == undefined || value.sujet == undefined) {
       this.toastr.error('complétez les deux champs svp');
     } else {
-      this.serviceMessage.postMessage(this.id, this.sujet, this.post).subscribe((response: any) => {
+      this.serviceMessage.postMessage(this.id, this.sujet, this.post, this.file).subscribe((response: any) => {
         this.toastr.success(`Vous venez d'ajouter un commentaire`);
-        //this.callapiUserPost();
         PostCom.reset();
         error => {
           this.toastr.error(error.error.error);
           console.log(error.error.error)
         }
       })
+    }
+  }
+
+  onFileChanged(event) {
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = () => {
+      this.file = reader.result
+      console.log(this.file);
+
     }
   }
 

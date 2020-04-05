@@ -99,10 +99,15 @@
             <textarea class="form-control" #posts="ngModel" type="text" [(ngModel)]="post" id="post" name="post"
                 rows="3"></textarea>
         </div>
+        <label>chosir une photo : </label>
+        <input type="file" class="form-control-file" (change)="onFileChanged($event)">
+        <br>
         <div class="row">
             <div class="col-md-5">
                 <button type="submit" [disabled]="!PostCom.form.valid" class="btn btn-secondary button">envoyer</button>
             </div>
         </div>
     </form>
+
+
 </div>
