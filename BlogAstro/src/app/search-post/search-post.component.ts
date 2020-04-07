@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MessageService } from 'src/app/service/message.service';
 import { Router } from '@angular/router';
@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-post',
   templateUrl: './search-post.component.html',
-  styleUrls: ['./search-post.component.css']
+  styleUrls: ['./search-post.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchPostComponent implements OnInit {
 

@@ -3,10 +3,15 @@ var express = require('express');
 var UserCtrl = require('./routes/UserCtrl');
 var MessCtrl = require('./routes/MessCtrl');
 var CommCtrl = require('./routes/CommCtrl');
+var Planets = require('./routes/planets');
 
 
 exports.router = (function () {
     var apiRouter = express.Router();
+
+    //Planets routes
+    apiRouter.route('/planet/:id').get(Planets.getPlanets);
+
 
     //User routes
     apiRouter.route('/userComm/:idPost').get(UserCtrl.getCommUser);
@@ -19,6 +24,7 @@ exports.router = (function () {
     apiRouter.route('/user/:id/').put(UserCtrl.UpdateUser);
 
     //PostMessage route 
+    apiRouter.route('/pic/').get(MessCtrl.testPic);
     apiRouter.route('/postmSujet/').post(MessCtrl.getMessBySubject);
     apiRouter.route('/postm/:id').get(MessCtrl.getMess);
     apiRouter.route('/postm/:id').put(MessCtrl.UpdateMess);

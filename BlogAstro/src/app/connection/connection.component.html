@@ -19,7 +19,7 @@
     <form (ngSubmit)="login(LoginUser.form.value,LoginUser)" #LoginUser="ngForm">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input #emailM="ngModel" type="text" required class="validate" class="form-control" id="email"
+            <input #emailM="ngModel" type="email" required class="validate" class="form-control" id="email"
                 [(ngModel)]="emaillogin" name="email">
         </div>
         <div class="form-group">

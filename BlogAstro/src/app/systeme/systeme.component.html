@@ -1,0 +1,59 @@
+<app-menu></app-menu>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left"> {{planet?.name}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li><span class="ecriture">semimajorAxis :</span> {{planet?.semimajorAxis}}</li>
+            <li><span class="ecriture">perihelion :</span> {{planet?.perihelion}}</li>
+            <li><span class="ecriture">aphelion :</span> {{planet?.aphelion}}</li>
+            <li><span class="ecriture">density :</span> {{planet?.density}}</li>
+            <li><span class="ecriture">gravity :</span> {{planet?.gravity}}</li>
+            <li><span class="ecriture">escape :</span> {{planet?.escape}}</li>
+            <li><span class="ecriture">meanRadius :</span> {{planet?.meanRadius}}</li>
+        </ul>
+    </div>
+</ng-template>
+
+
+<div class="container col">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template,'mercure')">Mercure</div>
+            <img class="imglogo img" src="assets/mercury.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'venus')">Vénus</div>
+            <img class="imglogo img" src="assets/venus.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'terre')">Terre</div>
+            <img class="imglogo img" src="assets/terre.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'mars')">Mars</div>
+            <img class="imglogo img" src="assets/mars.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'jupiter')">Jupiter</div>
+            <img class="imglogo img" src="assets/jupiter.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'saturne')">Saturne</div>
+            <img class="imglogo img" src="assets/saturn.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'uranus')">Uranus</div>
+            <img class="imglogo img" src="assets/uranus.jpg" width="150" height="100" alt="">
+        </div>
+        <div class="col-md-2">
+            <div class="wr" (click)="openModal(template, 'neptune')">Neptune</div>
+            <img class="imglogo img" src="assets/Neptune.jpg" width="130" height="100" alt="">
+        </div>
+    </div>
+</div>

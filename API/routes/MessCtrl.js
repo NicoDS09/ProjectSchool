@@ -1,6 +1,9 @@
 var models = require('../models');
 var server = require('../server');
 var mysql = require('mysql');
+var fs = require('fs');
+var sequelize = require('sequelize');
+var __dirname = "/Users/nicolasjosedossantos/Desktop/testpic";
 
 var con = mysql.createConnection({
     host: "localhost",
@@ -12,6 +15,15 @@ var con = mysql.createConnection({
 
 module.exports = {
 
+    testPic: function (req, res) {
+        fs.readFileSync(__dirname + '/imagess.jpg', function (err, data) {
+            if (err) res.status(401).json(err);
+            console.log(Buffer.from(data).toString('base64'));
+            console.log()
+            res.status(201).json(Buffer.from(data).toString('base64'));
+        });
+    },
+
     getMess: function (req, res) {
         var id = req.params.id;
 
@@ -20,7 +32,7 @@ module.exports = {
         }
 
         models.PostM.findAll({
-            attributes: ['id', 'iduser', 'sujet', 'post', 'createdAt', 'updatedAt'],
+            attributes: ['id', 'iduser', 'sujet', 'post', 'pic', 'createdAt', 'updatedAt'],
             where: {
                 id: id,
             }
@@ -55,6 +67,7 @@ module.exports = {
         var idUser = req.body.idUser;
         var sujet = req.body.sujet;
         var post = req.body.post;
+        var pic = req.body.pic;
 
 
         if (idUser == null || post == null) {
@@ -64,17 +77,25 @@ module.exports = {
             idUser: idUser,
             sujet: sujet,
             post: post,
+            pic: pic,
 
-        })
-            .then(function (newPost) {
-                server.callmessage();
-                return res.status(201).json({
-                    'id': newPost.id,
-                    'idUser': newPost.idUser,
-                    'sujet': newPost.sujet,
-                    'post': newPost.post,
-                })
+        }).then(function (newPost) {
+            // if (pic != null) {
+            //     pic = pic.split(';base64,').pop();
+            //     fs.writeFile(`/Users/nicolasjosedossantos/Documents/ProjectSchool/BlogAstro/src/assets/${newPost.id}.jpg`, pic, { encoding: 'base64' }, function (err) {
+            //         console.log('ok :)')
+            //     });
+
+            // }
+            server.callmessage();
+            return res.status(201).json({
+                'id': newPost.id,
+                'idUser': newPost.idUser,
+                'sujet': newPost.sujet,
+                'post': newPost.post,
+                'pic': newPost.pic
             })
+        })
             .catch(function (err) {
                 console.log(err)
                 return res.status(500).json({ 'error': `${err}` });

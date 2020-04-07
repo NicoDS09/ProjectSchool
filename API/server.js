@@ -6,6 +6,7 @@ var http = require('http').Server(server);
 var io = require('socket.io')(http);
 server.use(cors());
 var fs = require('fs');
+var cheerio = require('cheerio');
 
 
 io.on('connection', function (socket) {

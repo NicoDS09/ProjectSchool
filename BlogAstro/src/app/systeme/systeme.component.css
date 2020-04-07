@@ -1,0 +1,15 @@
+
+.col {
+    background:black;
+  }
+
+  .img {
+    margin: 10px!important;
+  }
+
+ .wr {
+     color: white;
+     text-align: center;
+     text-decoration: underline;
+     cursor: pointer;
+ }

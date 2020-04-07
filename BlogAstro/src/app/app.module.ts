@@ -20,6 +20,7 @@ import { TokenInterceptorService } from '../app/service/token-interceptor.servic
 import { CookieService } from 'ngx-cookie-service';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { SearchPostComponent } from './search-post/search-post.component';
+import { SystemeComponent } from './systeme/systeme.component';
 
 const appRoutes: Routes = [
   {
@@ -37,6 +38,10 @@ const appRoutes: Routes = [
     path: 'publication/:id/:idUser', component: CommentaireComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'planets', component: SystemeComponent,
+    canActivate: [AuthGuard]
+  },
 ]
 
 @NgModule({
@@ -46,7 +51,8 @@ const appRoutes: Routes = [
     AccueilComponent,
     MenuComponent,
     CommentaireComponent,
-    SearchPostComponent
+    SearchPostComponent,
+    SystemeComponent
   ],
   imports: [
     BrowserModule,
