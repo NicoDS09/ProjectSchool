@@ -64,7 +64,7 @@ export class AccueilComponent implements OnInit {
       this.toastr.error('complétez les deux champs svp');
     } else {
       this.serviceMessage.postMessage(this.id, this.sujet, this.post, this.file).subscribe((response: any) => {
-        this.toastr.success(`Vous venez d'ajouter un commentaire`);
+        this.toastr.success(`Vous venez d'ajouter une publication`);
         PostCom.reset();
         error => {
           this.toastr.error(error.error.error);
