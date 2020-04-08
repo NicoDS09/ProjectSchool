@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   public search: boolean;
   public planets: boolean;
   public test: any;
+  public nomBlogeur: string;
   constructor(private router: Router, private toast: ToastrService, private cookieService: CookieService) { }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class MenuComponent implements OnInit {
     this.home = this.router.isActive('home', true);
     this.search = this.router.isActive('search', true);
     this.planets = this.router.isActive('planets', true);
+    this.nomBlogeur = this.test = sessionStorage.getItem('UserNomBlogeur');
   }
 
   deconnect() {

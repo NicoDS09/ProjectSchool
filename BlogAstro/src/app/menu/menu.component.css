@@ -1,3 +1,9 @@
 .marg {
     margin-bottom: 25px;
 }
+
+span.name {
+    color :#3399ff;
+    margin-right: 10px;
+    font-weight: bold;
+}
