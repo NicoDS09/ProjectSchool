@@ -46,7 +46,8 @@ export class ConnectionComponent implements OnInit {
       if (response) this.toastr.success(`Vous êtes inscrit ${value.prenom} ${value.nom}`);
     },
       error => {
-        this.toastr.error(`Network Erreur !`);
+        console.log(error)
+        this.toastr.error(error.error.error);
       }
     )
   }
