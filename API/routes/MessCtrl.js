@@ -2,16 +2,8 @@ var models = require('../models');
 var server = require('../server');
 var mysql = require('mysql');
 var fs = require('fs');
-var sequelize = require('sequelize');
 var __dirname = "/Users/nicolasjosedossantos/Desktop/testpic";
-
-var con = mysql.createConnection({
-    host: "localhost",
-    port: "8889",
-    user: "root",
-    password: "root",
-    database: "astro"
-});
+const con = require("../config/config");
 
 module.exports = {
 

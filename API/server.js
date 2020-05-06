@@ -1,4 +1,5 @@
 var bodyParser = require('body-parser');
+// process.env.NODE_ENV = "prod";
 var apiRouter = require('./apiRouter.js').router;
 var cors = require('cors');
 var server = require('express')();
@@ -7,6 +8,9 @@ var io = require('socket.io')(http);
 server.use(cors());
 var fs = require('fs');
 var cheerio = require('cheerio');
+console.log(process.env.NODE_ENV)
+require('dotenv').config();
+console.log(process.env.NODE_ENV)
 
 
 io.on('connection', function (socket) {
@@ -16,7 +20,6 @@ io.on('connection', function (socket) {
 })
 
 // server.use(express.static());
-
 
 
 server.use(function (req, res, next) {

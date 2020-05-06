@@ -2,18 +2,9 @@ var models = require('../models');
 const Cryptr = require('cryptr');
 const jwt = require('jsonwebtoken');
 const cryptr = new Cryptr('myTotalySecretKey');
-var mysql = require('mysql');
-
-
+const con = require("../config/config")
 
 const secretKey = 'secretKey';
-var con = mysql.createConnection({
-    host: "localhost",
-    port: "8889",
-    user: "root",
-    password: "root",
-    database: "astro"
-});
 
 
 module.exports = {
