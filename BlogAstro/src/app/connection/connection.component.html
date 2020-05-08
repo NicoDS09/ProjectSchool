@@ -47,37 +47,27 @@
 
 
     <div class="container-fluid">
-        <form (ngSubmit)="PostUsers(PostUser.form.value,PostUser)" #PostUser="ngForm">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
-                    <input #emailM="ngModel" type="text" required class="validate" class="form-control" id="email"
-                        [(ngModel)]="email" name="email">
+                    <input type="text" formControlName="email" class="form-control">
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Password</label>
-                    <input #PasswordM="ngModel" type="password" required class="validate" class="form-control"
-                        id="password" [(ngModel)]="password" name="password">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputNom">Nom</label>
-                    <input #NomM="ngModel" type="text" required class="validate" class="form-control" id="nom"
-                        [(ngModel)]="nom" name="nom">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPrenom">Prenom</label>
-                    <input #PrenomM="ngModel" type="text" required class="validate" class="form-control" id="prenom"
-                        [(ngModel)]="prenom" name="prenom">
+                <div *ngIf="submitted && f.email.errors">
+                    <div *ngIf="f.email.errors.required">
+                        <div class="alert alert-danger" role="alert">
+                            This is a danger alert—check it out!
+                        </div>
+                    </div>
+                    <div *ngIf="f.email.errors.email">
+                        <div class="alert alert-danger" role="alert">
+                            This is a danger alert—check it out!
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="inputblog">Nom de blogeur</label>
-                <input #NomBlogeurM="ngModel" type="text" required class="validate" class="form-control" id="nomBlogeur"
-                    [(ngModel)]="nomBlogeur" name="nomBlogeur">
-            </div>
-            <button type="submit" [disabled]="!PostUser.form.valid" class="btn btn-secondary">s'inscrire</button>
+
+            <button type="submit" class="btn btn-secondary">s'inscrire</button>
         </form>
 
 

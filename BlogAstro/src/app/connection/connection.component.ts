@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TestBed } from '@angular/core/testing';
 
 
 @Component({
@@ -21,9 +23,11 @@ export class ConnectionComponent implements OnInit {
   public nomBlogeur: string;
   public emaillogin: string;
   public passwordlogin: string;
+  registerForm: FormGroup;
+  submitted = false;
 
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router, private cookieService: CookieService) { }
+  constructor(private modalService: BsModalService, private toastr: ToastrService, private serviceUser: UserService, private router: Router, private cookieService: CookieService, private formBuilder: FormBuilder) { }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -31,8 +35,12 @@ export class ConnectionComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
+
+  get f() { return this.registerForm.controls; }
 
 
   PostUsers(value: any, PostUser: NgForm) {
@@ -75,6 +83,18 @@ export class ConnectionComponent implements OnInit {
       }
     )
 
+  }
+
+  onSubmit() {
+    console.log('test')
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+    console.log('tedtx');
+    console.log(this.registerForm.value.email);
   }
 
 }
