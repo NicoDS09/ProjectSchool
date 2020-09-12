@@ -19,7 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "msql": "^1.0.3",
     "mysql": "^2.17.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "sequelize": "^3.30.4",
     "socket-io": "^1.0.0",
     "socket.io": "^2.3.0",
